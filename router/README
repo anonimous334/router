@@ -1,0 +1,21 @@
+Mierlich Daniel 323 CB
+
+La aceasta tema am folosit variabile globale r_tabela(Care este tabela de rutare 
+pentru router), arp_tabela(Care este tabela arp pentru router) si indicii de
+lungime. Am folosit variabile globala ca sa nu mai transmit de fiecare data in
+functii.
+
+Se ia un packet si se verifica tipul lui, daca e arp se apeleaza functia arp.
+In functia arp sunt 2 cazuri, pachetul primit poate fi sau request sau reply.
+Daca e request transmit macul meu de pe interfata care a venit packetul. 
+Daca e reply inseamna ca am primit un request de la alt router(am primit un mac de
+care aveam nevoie) il adaug in tabela arp pentru viitoarele operatii.
+Parcurg coada cu pachete si transmit packetele.
+
+Daca e un packet IP caut in tabela rtable, daca functia de cautare returneaza -1
+inseamna ca nu sa gasit ip(prefixul), cand functia de cautare returneaza un indice 
+se cauta in tabela arp macul, daca functia de cautare in arp_tabela returneaza -1
+insemna ca trebuie sa transmit un arp request ca sa primesc macul pentru acel ip.
+
+In rtable si arp_table caut binar  in timp logn.
+Functia ip_checksum am luat-o din laborator.
